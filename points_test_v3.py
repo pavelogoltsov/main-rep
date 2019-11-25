@@ -46,7 +46,7 @@ def obrab(event):
 #######==========================================
 
 def FindClosedPolys(a):
-    global hui
+    global hu
     res = list()
     print("Начал.....")
     for i in range(40):
@@ -61,7 +61,7 @@ def FindClosedPolys(a):
         for j in range(40):
             if a[i][j]>=1: a[i][j]=1
     hui = res[0][0]
-    print('hui  ',hui)
+    print('hui  ',hu)
     out(None,None,False)
     for cl in res:
         if len(cl) > 0:
@@ -193,15 +193,15 @@ def Nearly(a,now,last):
 #######==========================================
 # pasha
 def into(i,j):
-    global hui
+    global hu
     peres=[]
     k=0
     r=0
     while i+k != 39:# move down
         
-        if [i+k,j] in hui and perp('down',i+k,j) and not ([i+k-1,j] in hui and [i+k+1,j] in hui):
+        if [i+k,j] in hu and perp('down',i+k,j) and not ([i+k-1,j] in hu and [i+k+1,j] in hu):
             r+=1
-        elif ([i+k-1,j] in hui and [i+k+1,j] in hui): c.itemconfig(ovals[i+k][j],fill="cyan",outline="cyan")
+        elif ([i+k-1,j] in hu and [i+k+1,j] in hu): c.itemconfig(ovals[i+k][j],fill="cyan",outline="cyan")
         k+=1
     peres.append(r)
 
@@ -210,9 +210,9 @@ def into(i,j):
     k=0
     r=0                    
     while i-k != 0:# move up 
-        if [i-k,j] in hui and perp('up',i-k,j) and not ([i-k-1,j] in hui and [i-k+1,j] in hui):
+        if [i-k,j] in hu and perp('up',i-k,j) and not ([i-k-1,j] in hu and [i-k+1,j] in hu):
             r+=1
-        elif ([i-k-1,j] in hui and [i-k+1,j] in hui): c.itemconfig(ovals[i-k][j],fill="cyan",outline="cyan")
+        elif ([i-k-1,j] in hu and [i-k+1,j] in hu): c.itemconfig(ovals[i-k][j],fill="cyan",outline="cyan")
         k+=1
     peres.append(r)
 
@@ -220,9 +220,9 @@ def into(i,j):
     k=0
     r=0                    
     while j+k != 39:# move right 
-        if [i,j+k] in hui and perp('right',i,j+k) and not ([i,j+k+1] in hui and [i,j+k-1] in hui):
+        if [i,j+k] in hu and perp('right',i,j+k) and not ([i,j+k+1] in hu and [i,j+k-1] in hu):
             r+=1
-        elif ([i,j+k+1] in hui and [i,j+k-1] in hui): c.itemconfig(ovals[i][j+k],fill="cyan",outline="cyan")
+        elif ([i,j+k+1] in hu and [i,j+k-1] in hu): c.itemconfig(ovals[i][j+k],fill="cyan",outline="cyan")
         k+=1
     peres.append(r)
         
@@ -231,9 +231,9 @@ def into(i,j):
     k=0
     r=0                    
     while j-k != 0:# move left
-        if [i,j-k] in hui and perp('left',i,j-k) and not ([i,j-k-1] in hui and [i,j-k+1] in hui):
+        if [i,j-k] in hu and perp('left',i,j-k) and not ([i,j-k-1] in hu and [i,j-k+1] in hu):
             r+=1
-        elif ([i,j-k-1] in hui and [i,j-k+1] in hui): c.itemconfig(ovals[i][j-k],fill="cyan",outline="cyan")
+        elif ([i,j-k-1] in hu and [i,j-k+1] in hu): c.itemconfig(ovals[i][j-k],fill="cyan",outline="cyan")
         k+=1
     peres.append(r)
     if 0 in peres:
@@ -246,7 +246,7 @@ def into(i,j):
 
     
 def vr(ev):
-    global hui
+    global hu
     x = 15*round(ev.x/15)+2
     y = 15*round(ev.y/15)+2
     i,j = y//15,x//15
@@ -257,7 +257,7 @@ def vr(ev):
     else:
         c.itemconfig(ovals[i][j],fill="black",outline="black")
 def kuku(ev):
-    global hui
+    global hu
     x = 15*round(ev.x/15)+2
     y = 15*round(ev.y/15)+2
     i,j = y//15,x//15
@@ -266,16 +266,16 @@ def kuku(ev):
     else:
         print('no')
 def perp(move,i,j):
-    global hui
+    global hu
     if move == 'up' or move == 'down':
        # if ([i,j-1] in hui and  [i,j+1] in hui) or ([i,j-1] in hui and [i+1,j+1] in hui) or ([i,j-1] and []):
-        if [i-1,j-1] in hui or [i,j-1] in hui or [i+1,j-1] in hui or [i-1,j] in hui or [i+1,j] in hui :
-            if [i-1,j+1] in hui or [i,j+1] in hui or [i+1,j+1] in hui or [i-1,j] in hui or [i+1,j] in hui:
+        if [i-1,j-1] in hu or [i,j-1] in hu or [i+1,j-1] in hu or [i-1,j] in hu or [i+1,j] in hu :
+            if [i-1,j+1] in hu or [i,j+1] in hu or [i+1,j+1] in hu or [i-1,j] in hu or [i+1,j] in hu:
                 return True
         return False
     elif move == 'left' or move == 'right':
-        if [i-1,j-1] in hui or [i-1,j] in hui or [i-1,j+1] in hui or [i,j+1] in hui or [i,j-1] in hui:
-            if [i+1,j-1] in hui or [i+1,j] in hui or [i+1,j+1] in hui or [i,j+1] in hui or [i,j-1] in hui:
+        if [i-1,j-1] in hu or [i-1,j] in hu or [i-1,j+1] in hu or [i,j+1] in hu or [i,j-1] in hu:
+            if [i+1,j-1] in hu or [i+1,j] in hu or [i+1,j+1] in hu or [i,j+1] in hu or [i,j-1] in hu:
                 return True
         return False
         
