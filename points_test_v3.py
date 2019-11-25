@@ -60,8 +60,8 @@ def FindClosedPolys(a):
     for i in range(40):
         for j in range(40):
             if a[i][j]>=1: a[i][j]=1
-    hui = res[0][0]
-    print('hui  ',hu)
+    hu = res[0][0]
+    print('hu  ',hu)
     out(None,None,False)
     for cl in res:
         if len(cl) > 0:
