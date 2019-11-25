@@ -268,7 +268,7 @@ def kuku(ev):
 def perp(move,i,j):
     global hu
     if move == 'up' or move == 'down':
-       # if ([i,j-1] in hui and  [i,j+1] in hui) or ([i,j-1] in hui and [i+1,j+1] in hui) or ([i,j-1] and []):
+       # if ([i,j-1] in hu and  [i,j+1] in hu) or ([i,j-1] in hu and [i+1,j+1] in hu) or ([i,j-1] and []):
         if [i-1,j-1] in hu or [i,j-1] in hu or [i+1,j-1] in hu or [i-1,j] in hu or [i+1,j] in hu :
             if [i-1,j+1] in hu or [i,j+1] in hu or [i+1,j+1] in hu or [i-1,j] in hu or [i+1,j] in hu:
                 return True
