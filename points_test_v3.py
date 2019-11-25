@@ -11,7 +11,7 @@ for i in range(41):
         l = 0
         c.create_rectangle(i*15+l,j*15+l,i*15+15+l,j*15+15+l,fill='moccasin')
 
-hui = []
+hhh = []
 ovals = [[0]*40 for i in range(40)]
 for i in range(40):
     for j in range(40):
@@ -44,7 +44,7 @@ def naz(ev): # при нажатии рисует круг и заносит в 
 def obrab(event):
     FindClosedPolys(a)
 #######==========================================
-# Здесь моё
+
 def FindClosedPolys(a):
     global hui
     res = list()
