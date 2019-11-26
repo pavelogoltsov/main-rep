@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<canvas id='example'>Обновите браузер</canvas>
+<script>
+    arr=[];
+    var example = document.getElementById("example"),
+    ctx=example.getContext('2d');
+    example.height = 1000;
+    example.width  = 1000;
+/*
+    ctx.fillStyle="#f3f3f3";
+    ctx.strokeStyle="black";
+    ctx.rect(830,20,30,30);
+    ctx.stroke();
+    ctx.rect(800,20,30,30);
+    ctx.stroke();
+    ctx.rect(860,20,30,30);
+    ctx.stroke();
+
+    ctx.fillStyle="#f3f3f3";
+    ctx.fillRect(800,20,29,30);
+    ctx.fillRect(830,20,29,30);
+    ctx.fillRect(860,20,30,30);
+
+    ctx.fillStyle = "#999999";
+    ctx.font = "bold 17pt Arial";
+    ctx.fillText("2", 808, 43);
+    ctx.fillText("3", 838, 43);
+    ctx.fillText("N", 867, 43);
+    ctx.fillStyle="#0DA8FF";
+
+    ctx.fillRect(800,60,125,40);*/
+    function pp(){
+        //ctx.clearRect(0,0,1000,1000)
+        var x, y;
+        var mas=[];
+        var k=0.5;
+        var h;
+        var kk=0.0000;
+        while(kk<0.999){
+            k=kk/(1-kk);
+            h=arr.slice();
+            while(h.length!=1){
+                for(var i=0;i<h.length-1;i++){
+                    x=(h[i][0]+k*h[i+1][0])/(1+k);
+                    y=(h[i][1]+k*h[i+1][1])/(1+k);
+
+                    h[i][0]=x;h[i][1]=y;
+
+                }
+
+                h.pop()
+            }
+            mas.push(h[0][0]);
+            mas.push(h[0][1]);
+            ctx.fillStyle="green";
+
+            kk+=0.0005;
+            ctx.strokeStyle="#0000FF";
+            if(mas.length==4){
+                ctx.beginPath();
+                ctx.moveTo(mas[0],mas[1]);
+                ctx.lineTo(mas[2],mas[3]);
+                mas=[mas[2],mas[3]];
+                ctx.stroke();
+                ctx.closePath();
+            }
+
+        }
+        for(i=0;i<arr.length;i++){
+            //alert(i);
+            ctx.fillStyle="#ff7f50";
+            ctx.beginPath();
+            ctx.arc(arr[i][0],arr[i][1],4,0,Math.PI*2);
+            ctx.closePath();
+            ctx.fill();
+
+
+
+        }
+
+    }
+    function pereris(){
+        //if knopka
+    }
+    function dlines(a) {
+        ctx.strokeStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(a[0][0], a[0][1]);
+
+        for (var i = 1; i < a.length; i++) {
+            ctx.lineTo(a[i][0], a[i][1]);
+        }
+        ctx.stroke();
+
+        for(i=0;i<arr.length;i++){
+            //alert(arr[i][0]+""+arr[i][1]);
+            ctx.fillStyle="#ff7f50";
+            ctx.beginPath();
+            ctx.arc(arr[i][0],arr[i][1],4,0,Math.PI*2);
+            ctx.closePath();
+            ctx.fill();
+
+
+
+        }
+        //ctx.stroke();
+        var j = 0;pp();
+    }
+    addEventListener("keydown", function(event){
+       flag=false;dlines(arr);
+    });
+    addEventListener("mousemove",function(event){
+
+        //reload();
+        NaN;
+
+    });
+    addEventListener("click", function(event) {
+
+        var x0,y0;
+        result=0;
+        flag=false;
+        dvig=false;
+        x0=event.pageX;y0=event.pageY;
+
+        if ((x0>800)&&(x0<889)&&(y0>20)&&(y0<50)){
+            //reload();
+            //knn(((x0-800)/30)>>0);
+        }
+
+        if (!flag){
+
+            arr.push([x0,y0]);
+
+            ctx.strokeStyle = "#00000";
+            ctx.fillStyle="#ff7f50";
+            ctx.beginPath();
+            ctx.arc(x0,y0,4,0,Math.PI*2);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+            ctx.fillStyle="#0000CD";
+            ctx.strokeStyle ="#000000";
+
+        }
+    });
+</script>
+</body>
+</html>
